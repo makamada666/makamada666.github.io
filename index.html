@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makamada Circle — Komunitas Memecoin Solana</title>
+<meta name="description" content="Komunitas edukasi & sinyal memecoin Solana oleh Makamada. Edukasi, sinyal degen, dan scalping memecoin. Gratis untuk join, premium 1 SOL/tahun.">
+<link rel="icon" type="image/jpeg" href="images/avatar.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0B0F;
+    --surface:#12141A;
+    --surface-2:#181B23;
+    --line:#232733;
+    --text:#E8EAF0;
+    --muted:#8A90A0;
+    --accent:#9945FF;
+    --green:#14F195;
+    --purple:#00D1FF;
+    --red:#FF5C5C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--bg)}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .container{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,11,15,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:.02em}
+  .logo img{width:30px;height:30px;border-radius:50%;background:#fff}
+  .logo .dot{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{
+    background:var(--accent);color:var(--bg);
+    padding:9px 18px;border-radius:8px;
+    font-weight:600;font-size:14px;
+    transition:opacity .2s;
+  }
+  .nav-cta:hover{opacity:.85}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ===== HERO ===== */
+  .hero{padding:88px 0 72px;position:relative;overflow:hidden}
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(600px 300px at 70% 0%,rgba(20,241,149,.06),transparent),
+               radial-gradient(500px 300px at 20% 20%,rgba(153,69,255,.09),transparent);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;position:relative}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    color:var(--accent);
+    border:1px solid var(--line);border-radius:999px;
+    padding:6px 14px;margin-bottom:24px;
+    background:var(--surface);
+  }
+  .eyebrow .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--accent);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero h1{font-size:clamp(34px,5.5vw,56px);font-weight:700}
+  .hero h1 .hl{color:var(--accent)}
+  .hero p.sub{margin:20px 0 32px;font-size:17px;color:var(--muted);max-width:520px}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--accent);color:var(--bg);
+    padding:14px 26px;border-radius:10px;
+    font-weight:600;font-size:15.5px;
+    transition:transform .15s,opacity .2s;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px);opacity:.9}
+  .btn-ghost{
+    border:1px solid var(--line);color:var(--text);
+    padding:14px 26px;border-radius:10px;
+    font-weight:500;font-size:15.5px;
+    transition:border-color .2s;display:inline-block;
+    background:var(--surface);
+  }
+  .btn-ghost:hover{border-color:var(--accent)}
+  .hero-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:18px;padding:28px;text-align:center;
+  }
+  .hero-card img{
+    width:140px;height:140px;border-radius:50%;
+    margin:0 auto 16px;background:#fff;
+    border:3px solid var(--accent);
+    object-fit:cover;
+  }
+  .hero-card .name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px}
+  .hero-card .role{color:var(--muted);font-size:13.5px;margin-top:4px}
+  .hero-card .mini-stats{
+    display:flex;justify-content:center;gap:24px;
+    margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
+  }
+  .hero-card .ms .v{font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:17px;font-weight:500}
+  .hero-card .ms .l{font-size:11.5px;color:var(--muted)}
+  @media(max-width:820px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-card{max-width:360px;margin:0 auto}
+  }
+
+  /* ===== TICKER ===== */
+  .ticker-wrap{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--surface);
+    overflow:hidden;white-space:nowrap;
+    padding:12px 0;
+  }
+  .ticker{display:inline-block;animation:scroll 40s linear infinite}
+  .ticker-wrap:hover .ticker{animation-play-state:paused}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tick{
+    display:inline-flex;gap:8px;margin:0 28px;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+  }
+  .tick .sym{color:var(--muted)}
+  .tick .up{color:var(--green)}
+  @media(prefers-reduced-motion:reduce){
+    .ticker{animation:none}
+    .eyebrow .pulse{animation:none}
+  }
+
+  /* ===== STATS ===== */
+  .stats{padding:64px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .stat{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:28px;
+  }
+  .stat .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:32px;font-weight:500;color:var(--accent);
+  }
+  .stat .label{color:var(--muted);font-size:14px;margin-top:6px}
+  @media(max-width:720px){.stats-grid{grid-template-columns:1fr}}
+
+  /* ===== SECTIONS ===== */
+  section{padding:72px 0}
+  .sec-head{margin-bottom:44px;max-width:640px}
+  .sec-head .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    color:var(--purple);letter-spacing:.08em;text-transform:uppercase;
+  }
+  .sec-head h2{font-size:clamp(26px,4vw,38px);margin-top:10px}
+  .sec-head p{color:var(--muted);margin-top:12px}
+
+  /* ===== FOUNDER ===== */
+  .founder{
+    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:18px;padding:36px;
+  }
+  .founder img{
+    width:120px;height:120px;border-radius:20px;background:#fff;object-fit:cover;
+  }
+  .founder h3{font-size:22px;margin-bottom:10px}
+  .founder h3 span{color:var(--accent)}
+  .founder p{color:var(--muted);font-size:15px}
+  .founder .links{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+  .founder .links a{
+    font-size:13.5px;color:var(--accent);
+    border:1px solid var(--line);border-radius:8px;
+    padding:8px 14px;background:var(--surface-2);
+    transition:border-color .2s;
+  }
+  .founder .links a:hover{border-color:var(--accent)}
+  @media(max-width:640px){
+    .founder{grid-template-columns:1fr;text-align:center}
+    .founder img{margin:0 auto}
+    .founder .links{justify-content:center}
+  }
+
+  /* ===== FITUR ===== */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .feat{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:28px;
+    transition:border-color .25s,transform .25s;
+  }
+  .feat:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .feat .icon{
+    width:42px;height:42px;border-radius:10px;
+    background:var(--surface-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;margin-bottom:18px;
+  }
+  .feat h3{font-size:18px;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:14.5px}
+  @media(max-width:840px){.features{grid-template-columns:1fr}}
+
+  /* ===== TRACK RECORD ===== */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+  .gallery img{
+    border-radius:12px;border:1px solid var(--line);
+    transition:transform .25s,border-color .25s;
+  }
+  .gallery img:hover{transform:scale(1.02);border-color:var(--green)}
+  @media(max-width:840px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.gallery{grid-template-columns:1fr}}
+  .table-card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;
+  }
+  .table-head{
+    display:flex;align-items:center;gap:8px;
+    padding:14px 20px;border-bottom:1px solid var(--line);
+    background:var(--surface-2);
+  }
+  .dot-r,.dot-y,.dot-g{width:10px;height:10px;border-radius:50%}
+  .dot-r{background:var(--red)}
+  .dot-y{background:#FFC24B}
+  .dot-g{background:var(--green)}
+  .table-head span{
+    margin-left:10px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--muted);
+  }
+  table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13.5px}
+  th{
+    text-align:left;padding:14px 20px;color:var(--muted);
+    font-weight:400;font-size:12px;text-transform:uppercase;letter-spacing:.06em;
+    border-bottom:1px solid var(--line);
+  }
+  td{padding:14px 20px;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:none}
+  td.up{color:var(--green);font-weight:500}
+  .note{margin-top:14px;font-size:12.5px;color:var(--muted)}
+  @media(max-width:640px){
+    th:nth-child(4),td:nth-child(4){display:none}
+  }
+
+  /* ===== PRICING ===== */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .plan{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:16px;padding:32px;display:flex;flex-direction:column;
+  }
+  .plan.premium{border-color:var(--accent);position:relative}
+  .plan .badge{
+    position:absolute;top:-12px;left:28px;
+    background:var(--accent);color:var(--bg);
+    font-size:12px;font-weight:600;
+    padding:4px 12px;border-radius:999px;
+  }
+  .plan h3{font-size:20px}
+  .plan .price{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:34px;color:var(--text);margin:14px 0 4px;
+  }
+  .plan .price span{font-size:14px;color:var(--muted)}
+  .plan.premium .price{color:var(--accent)}
+  .plan ul{list-style:none;margin:20px 0 26px;flex:1}
+  .plan li{
+    padding:8px 0;font-size:14.5px;color:var(--muted);
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .plan li::before{content:'✓';color:var(--green);font-weight:600}
+  .plan .cta{
+    text-align:center;padding:13px;border-radius:10px;
+    font-weight:600;font-size:15px;
+  }
+  .plan .cta.ghost{border:1px solid var(--line);background:var(--surface-2)}
+  .plan .cta.ghost:hover{border-color:var(--accent)}
+  .plan .cta.solid{background:var(--accent);color:var(--bg)}
+  .plan .cta.solid:hover{opacity:.9}
+  @media(max-width:760px){.plans{grid-template-columns:1fr}}
+
+  .wallet-box{
+    margin-top:28px;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:14px;padding:26px;
+  }
+  .wallet-box h3{font-size:17px;margin-bottom:14px}
+  .wallet-addr{
+    display:flex;align-items:center;gap:10px;
+    background:var(--bg);border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+    word-break:break-all;
+  }
+  .wallet-addr .hl-mada{color:var(--accent);font-weight:500}
+  .copy-btn{
+    flex-shrink:0;cursor:pointer;
+    background:var(--surface-2);border:1px solid var(--line);
+    color:var(--text);border-radius:8px;
+    padding:8px 14px;font-size:12.5px;font-family:'Inter',sans-serif;
+    transition:border-color .2s;
+  }
+  .copy-btn:hover{border-color:var(--accent)}
+  .wallet-warn{
+    margin-top:14px;font-size:13px;color:var(--muted);
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .wallet-warn .ic{color:#FFC24B}
+
+  /* ===== AXIOM PARTNER ===== */
+  .axiom-card{
+    display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:18px;padding:34px;
+  }
+  .axiom-card img{
+    width:190px;border-radius:12px;
+  }
+  .axiom-card .ax-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+    color:var(--accent);letter-spacing:.08em;text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .axiom-card h3{font-size:21px;margin-bottom:8px}
+  .axiom-card p{color:var(--muted);font-size:14.5px;max-width:480px}
+  @media(max-width:820px){
+    .axiom-card{grid-template-columns:1fr;text-align:center}
+    .axiom-card img{margin:0 auto}
+    .axiom-card .btn-primary{justify-self:center}
+  }
+
+  /* ===== TESTIMONI ===== */
+  .testi-grid{
+    columns:3;column-gap:16px;
+  }
+  .testi-grid img{
+    width:100%;margin-bottom:16px;
+    border-radius:12px;border:1px solid var(--line);
+    transition:border-color .25s;
+    break-inside:avoid;
+  }
+  .testi-grid img:hover{border-color:var(--accent)}
+  @media(max-width:840px){.testi-grid{columns:2}}
+  @media(max-width:520px){.testi-grid{columns:1}}
+
+  /* ===== FAQ ===== */
+  details{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;margin-bottom:12px;
+    transition:border-color .2s;
+  }
+  details[open]{border-color:var(--accent)}
+  summary{
+    cursor:pointer;padding:18px 22px;font-weight:600;font-size:15.5px;
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';color:var(--accent);font-size:20px;font-family:'IBM Plex Mono',monospace}
+  details[open] summary::after{content:'−'}
+  details .ans{padding:0 22px 20px;color:var(--muted);font-size:14.5px}
+  details .ans a{color:var(--accent)}
+
+  /* ===== CTA AKHIR ===== */
+  .final{
+    text-align:center;
+    background:radial-gradient(500px 250px at 50% 0%,rgba(153,69,255,.10),transparent);
+    border-top:1px solid var(--line);
+  }
+  .final h2{font-size:clamp(28px,4.5vw,42px)}
+  .final p{color:var(--muted);margin:16px auto 32px;max-width:480px}
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;font-size:13px;color:var(--muted);
+  }
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+  .socials{display:flex;gap:20px}
+  .socials a:hover{color:var(--accent)}
+  .disclaimer{
+    margin-top:24px;padding-top:24px;border-top:1px solid var(--line);
+    font-size:12px;line-height:1.7;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+  a:focus-visible,summary:focus-visible,button:focus-visible{
+    outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo"><img src="images/avatar.jpg" alt="Makamada"> MAKAMADA<span class="dot">•</span>CIRCLE</a>
+    <div class="nav-links">
+      <a href="#founder">Founder</a>
+      <a href="#track">Track Record</a>
+      <a href="#harga">Join</a>
+      <a href="#axiom">Axiom</a>
+      <a href="#testi">Testimoni</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://t.me/makamadacircle" target="_blank" rel="noopener" class="nav-cta">Join Gratis</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="pulse"></span> LIVE DI JARINGAN SOLANA</div>
+      <h1>Berhenti FOMO sendirian.<br>Riset bareng, <span class="hl">cuan bareng.</span></h1>
+      <p class="sub">Makamada Circle adalah komunitas edukasi & sinyal memecoin Solana. Belajar cara masuk yang benar — bukan cuma ikut-ikutan hype.</p>
+      <div class="btn-row">
+        <a href="https://t.me/makamadacircle" target="_blank" rel="noopener" class="btn-primary">Join Grup Gratis →</a>
+        <a href="#track" class="btn-ghost">Lihat Track Record</a>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <img src="images/avatar.jpg" alt="Avatar Makamada">
+      <div class="name">Makamada</div>
+      <div class="role">Founder Makamada Circle · Memecoin Enthusiast</div>
+      <div class="mini-stats">
+        <div class="ms"><div class="v">219+</div><div class="l">Member</div></div>
+        <div class="ms"><div class="v">381x</div><div class="l">Best Call</div></div>
+        <div class="ms"><div class="v">2025</div><div class="l">Sejak Juni</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker">
+    <span class="tick"><span class="sym">$U1</span><span class="up">381x</span></span>
+    <span class="tick"><span class="sym">$OXE</span><span class="up">36.3x</span></span>
+    <span class="tick"><span class="sym">$ZACHXBT</span><span class="up">12.0x</span></span>
+    <span class="tick"><span class="sym">$ELLA</span><span class="up">10.2x</span></span>
+    <span class="tick"><span class="sym">$BAGS</span><span class="up">9.0x</span></span>
+    <span class="tick"><span class="sym">$JESTER</span><span class="up">7.3x</span></span>
+    <span class="tick"><span class="sym">$U1</span><span class="up">381x</span></span>
+    <span class="tick"><span class="sym">$OXE</span><span class="up">36.3x</span></span>
+    <span class="tick"><span class="sym">$ZACHXBT</span><span class="up">12.0x</span></span>
+    <span class="tick"><span class="sym">$ELLA</span><span class="up">10.2x</span></span>
+    <span class="tick"><span class="sym">$BAGS</span><span class="up">9.0x</span></span>
+    <span class="tick"><span class="sym">$JESTER</span><span class="up">7.3x</span></span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat reveal"><div class="num">219+</div><div class="label">Member aktif di komunitas sejak 19 Juni 2025</div></div>
+    <div class="stat reveal"><div class="num">381x</div><div class="label">Best call — $U1 dari market cap 33.1K</div></div>
+    <div class="stat reveal"><div class="num">6+</div><div class="label">Call di atas 7x dalam beberapa bulan terakhir</div></div>
+  </div>
+</div>
+
+<section id="founder">
+  <div class="container">
+    <div class="founder reveal">
+      <img src="images/avatar.jpg" alt="Makamada — Founder Makamada Circle">
+      <div>
+        <h3>Kenalan sama <span>Makamada</span></h3>
+        <p>Founder Makamada Circle — komunitas memecoin Solana yang berdiri sejak 19 Juni 2025 dan sekarang beranggotakan 219+ degen aktif. Sehari-hari Makamada berbagi edukasi, analisis, dan sinyal memecoin lewat TikTok dan Telegram. Filosofinya sederhana: degen boleh, bodoh jangan — setiap entry harus punya alasan.</p>
+        <div class="links">
+          <a href="https://www.tiktok.com/@ramadhanadm" target="_blank" rel="noopener">🎬 TikTok @ramadhanadm</a>
+          <a href="https://t.me/makamadacircle" target="_blank" rel="noopener">💬 Grup Telegram</a>
+          <a href="https://t.me/Makamada" target="_blank" rel="noopener">👤 Kontak Langsung</a>
+          <a href="mailto:makamada666@gmail.com">✉️ makamada666@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kenapa" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">// Kenapa Join</div>
+      <h2>Bukan grup sinyal asal call.<br>Ini tempat lu naik level.</h2>
+      <p>Beda antara degen yang bertahan dan yang boncos: yang bertahan ngerti apa yang dia beli.</p>
+    </div>
+    <div class="features">
+      <div class="feat reveal">
+        <div class="icon">🎓</div>
+        <h3>Edukasi Memecoin</h3>
+        <p>Dari cara baca chart, memahami market cap, sampai spot red flag sebelum rug. Materi dibagikan rutin di grup — gratis.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="icon">⚡</div>
+        <h3>Sinyal Degen & Scalping</h3>
+        <p>Call memecoin Solana lengkap dengan market cap entry. Termasuk teknik scalping untuk yang main cepat. Semua call terarsip dengan timestamp.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="icon">🔐</div>
+        <h3>Grup Internal Premium</h3>
+        <p>Trik, tips, tutorial, dan rahasia strategi Makamada dibagikan eksklusif di grup internal berbayar. Level lanjut untuk yang serius.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="track" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">// Track Record</div>
+      <h2>Bukti, bukan janji.</h2>
+      <p>Call terverifikasi dengan timestamp dari bot tracker pihak ketiga. Klik untuk lihat detailnya.</p>
+    </div>
+    <div class="gallery reveal">
+      <img src="images/call-u1.jpg" alt="Call $U1 381x oleh Makamada" loading="lazy">
+      <img src="images/call-oxe.jpg" alt="Call $OXE 36.3x oleh Makamada" loading="lazy">
+      <img src="images/call-zachxbt.jpg" alt="Call $ZACHXBT 12x oleh Makamada" loading="lazy">
+      <img src="images/call-ella.jpg" alt="Call $ELLA 10.2x oleh Makamada" loading="lazy">
+      <img src="images/call-bags.jpg" alt="Call $BAGS 9x oleh Makamada" loading="lazy">
+      <img src="images/call-jester.jpg" alt="Call $JESTER 7.3x oleh Makamada" loading="lazy">
+    </div>
+    <div class="table-card reveal">
+      <div class="table-head">
+        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+        <span>makamada — recent_calls.log</span>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Token</th><th>Called At (MC)</th><th>Hasil</th><th>Durasi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$U1</td><td>$33.1K</td><td class="up">381x</td><td>12d 6h</td></tr>
+          <tr><td>$OXE</td><td>$15.9K</td><td class="up">36.3x</td><td>4d 14h</td></tr>
+          <tr><td>$ZACHXBT</td><td>$53.5K</td><td class="up">12.0x</td><td>11h 46m</td></tr>
+          <tr><td>$ELLA</td><td>$25.4K</td><td class="up">10.2x</td><td>4h 11m</td></tr>
+          <tr><td>$BAGS</td><td>$54.2K</td><td class="up">9.0x</td><td>7h 23m</td></tr>
+          <tr><td>$JESTER</td><td>$34.7K</td><td class="up">7.3x</td><td>2d 20h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">* Hasil di atas adalah peak multiplier dari harga call. Performa masa lalu tidak menjamin hasil di masa depan.</p>
+  </div>
+</section>
+
+<section id="axiom" style="padding-top:0">
+  <div class="container">
+    <div class="axiom-card reveal">
+      <img src="images/axiom.jpg" alt="Axiom — terminal trading memecoin" loading="lazy">
+      <div>
+        <div class="ax-tag">// Official Partner</div>
+        <h3>Makamada × Axiom</h3>
+        <p>Makamada adalah partner of Axiom — best terminal untuk trading memecoin. Eksekusi cepat, chart lengkap, dan tracking wallet dalam satu terminal. Daftar lewat link resmi Makamada di bawah.</p>
+      </div>
+      <a href="https://axiom.trade/@ramadhn" target="_blank" rel="noopener" class="btn-primary">Daftar Axiom →</a>
+    </div>
+  </div>
+</section>
+
+<section id="harga" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">// Join</div>
+      <h2>Dua jalur masuk.<br>Mulai gratis, upgrade kalau serius.</h2>
+    </div>
+    <div class="plans">
+      <div class="plan reveal">
+        <h3>Grup Publik</h3>
+        <div class="price">Gratis</div>
+        <ul>
+          <li>Edukasi memecoin rutin</li>
+          <li>Sinyal degen memecoin Solana</li>
+          <li>Sinyal & teknik scalping memecoin</li>
+          <li>Komunitas diskusi 219+ member</li>
+        </ul>
+        <a href="https://t.me/makamadacircle" target="_blank" rel="noopener" class="cta ghost">Join Sekarang — Gratis</a>
+      </div>
+      <div class="plan premium reveal">
+        <div class="badge">PALING SERIUS</div>
+        <h3>Grup Internal Makamada</h3>
+        <div class="price">1 SOL <span>/ 1 tahun</span></div>
+        <ul>
+          <li>Semua benefit grup publik</li>
+          <li>Trik & tips strategi Makamada</li>
+          <li>Tutorial lengkap step-by-step</li>
+          <li>Rahasia strategi yang nggak dibagikan di grup publik</li>
+          <li>Akses langsung diskusi lebih dalam</li>
+        </ul>
+        <a href="https://t.me/Makamada" target="_blank" rel="noopener" class="cta solid">Upgrade via Telegram →</a>
+      </div>
+    </div>
+
+    <div class="wallet-box reveal">
+      <h3>💳 Cara pembayaran grup internal</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Kirim <strong style="color:var(--text)">1 SOL</strong> ke alamat wallet resmi di bawah ini, lalu konfirmasi ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">Telegram @Makamada</a> untuk mendapatkan akses grup internal.</p>
+      <div class="wallet-addr">
+        <span id="wallet-text">CtHVKmAkrTYYcAxrnpvJQuf2MD7yY7eQA4bTp6DR<span class="hl-mada">MAda</span></span>
+        <button class="copy-btn" onclick="copyWallet(this)">Salin</button>
+      </div>
+      <div class="wallet-warn">
+        <span class="ic">⚠️</span>
+        <span><strong style="color:var(--text)">Penting:</strong> hanya kirim ke alamat di atas. Ciri alamat resmi: berakhiran <span class="mono" style="color:var(--accent)">MAda</span> (nama Mada). Selalu cek ulang seluruh alamat sebelum mengirim — transaksi di blockchain tidak bisa dibatalkan. Jika ragu, konfirmasi dulu ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">@Makamada</a>.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testi" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">// Testimoni</div>
+      <h2>Kata member, apa adanya.</h2>
+      <p>Screenshot asli dari grup — bukan testimoni karangan.</p>
+    </div>
+    <div class="testi-grid reveal">
+      <img src="images/testi-3.jpg" alt="Testimoni member: dapat 40x" loading="lazy">
+      <img src="images/testi-1.jpg" alt="Testimoni member: profit dari DCA $BABY" loading="lazy">
+      <img src="images/testi-4.jpg" alt="Testimoni member: dari modal $10 jadi $100" loading="lazy">
+      <img src="images/testi-2.jpg" alt="Testimoni member: PNL +100%" loading="lazy">
+      <img src="images/testi-5.jpg" alt="Testimoni member: profit 131%" loading="lazy">
+      <img src="images/testi-6.jpg" alt="Testimoni member: terima kasih atas edukasi" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">// FAQ</div>
+      <h2>Pertanyaan yang sering masuk.</h2>
+    </div>
+    <details class="reveal">
+      <summary>Apakah ini jaminan profit?</summary>
+      <div class="ans">Tidak, dan siapa pun yang menjanjikan profit pasti di memecoin sedang membohongi lu. Makamada Circle menyediakan edukasi, sinyal, dan komunitas — keputusan dan risiko tetap di tangan masing-masing. DYOR selalu.</div>
+    </details>
+    <details class="reveal">
+      <summary>Apa bedanya grup gratis dan grup internal berbayar?</summary>
+      <div class="ans">Grup publik (gratis) berisi edukasi, sinyal degen memecoin, dan sinyal scalping. Grup internal (1 SOL/tahun) berisi trik, tips, tutorial, dan rahasia strategi Makamada yang lebih dalam — untuk yang mau serius naik level.</div>
+    </details>
+    <details class="reveal">
+      <summary>Gua pemula banget, cocok nggak?</summary>
+      <div class="ans">Cocok. Mulai dari grup gratis dulu di <a href="https://t.me/makamadacircle" target="_blank" rel="noopener">t.me/makamadacircle</a> — ikuti edukasinya, kenali ritmenya. Kalau udah nyaman dan mau lebih dalam, baru upgrade ke grup internal.</div>
+    </details>
+    <details class="reveal">
+      <summary>Gimana cara bayar dan dapat akses grup internal?</summary>
+      <div class="ans">Kirim 1 SOL ke wallet resmi yang tertera di bagian Join (berakhiran "MAda"), lalu konfirmasi bukti transfer ke <a href="https://t.me/Makamada" target="_blank" rel="noopener">@Makamada</a> di Telegram. Setelah terverifikasi, lu langsung dimasukkan ke grup internal dengan akses selama 1 tahun.</div>
+    </details>
+    <details class="reveal">
+      <summary>Apakah call-nya bisa diverifikasi?</summary>
+      <div class="ans">Bisa. Call Makamada tercatat lewat bot tracker pihak ketiga lengkap dengan market cap saat call dan timestamp-nya, jadi hasilnya bukan klaim sepihak.</div>
+    </details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="container">
+    <h2>Siap trading dengan <span style="color:var(--accent)">otak</span>,<br>bukan cuma nyali?</h2>
+    <p>219+ degen udah di dalam. Mulai dari grup gratis — nggak ada alasan buat nunggu.</p>
+    <a href="https://t.me/makamadacircle" target="_blank" rel="noopener" class="btn-primary">Join Makamada Circle →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div class="logo"><img src="images/avatar.jpg" alt=""> MAKAMADA<span class="dot">•</span>CIRCLE</div>
+      <div class="socials">
+        <a href="https://www.tiktok.com/@ramadhanadm" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://t.me/makamadacircle" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://axiom.trade/@ramadhn" target="_blank" rel="noopener">Axiom</a>
+        <a href="https://t.me/Makamada" target="_blank" rel="noopener">Kontak</a>
+        <a href="mailto:makamada666@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> Seluruh konten di website dan komunitas ini bersifat edukasi dan bukan nasihat keuangan (Not Financial Advice). Trading memecoin memiliki risiko sangat tinggi termasuk kehilangan seluruh modal. Performa masa lalu tidak menjamin hasil di masa depan. Selalu lakukan riset mandiri (DYOR) dan hanya gunakan dana yang siap lu relakan. © 2026 Makamada Circle.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  function copyWallet(btn){
+    const addr = 'CtHVKmAkrTYYcAxrnpvJQuf2MD7yY7eQA4bTp6DRMAda';
+    navigator.clipboard.writeText(addr).then(()=>{
+      btn.textContent = 'Tersalin ✓';
+      setTimeout(()=>{ btn.textContent = 'Salin'; }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
