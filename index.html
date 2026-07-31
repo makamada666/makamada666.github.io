@@ -317,6 +317,30 @@
     display:flex;gap:10px;align-items:flex-start;
   }
   .wallet-warn .ic{color:#FFC24B}
+  .pay-divider{
+    display:flex;align-items:center;gap:14px;
+    margin:24px 0;color:var(--muted);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+  }
+  .pay-divider::before,.pay-divider::after{
+    content:'';flex:1;height:1px;background:var(--line);
+  }
+  .saweria-row{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;
+  }
+  .pay-logos{display:flex;gap:10px;flex-wrap:wrap}
+  .pay-logos img{
+    height:34px;width:auto;border-radius:8px;
+    border:1px solid var(--line);
+  }
+  .saweria-btn{
+    background:var(--accent);color:var(--bg);
+    padding:12px 22px;border-radius:10px;
+    font-weight:600;font-size:14.5px;
+    transition:opacity .2s;white-space:nowrap;
+  }
+  .saweria-btn:hover{opacity:.9}
 
   /* ===== TOOLS ===== */
   .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -615,6 +639,7 @@
         <div class="badge">PALING SERIUS</div>
         <h3>Grup Internal Makamada</h3>
         <div class="price">1 SOL <span>/ 1 tahun</span></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--muted);margin-bottom:4px">atau <strong style="color:var(--text)">Rp 350.000</strong> / bulan <span style="font-size:12px">(khusus via Saweria)</span></div>
         <ul>
           <li>Semua benefit grup publik</li>
           <li>Trik & tips strategi Makamada</li>
@@ -628,7 +653,7 @@
 
     <div class="wallet-box reveal">
       <h3>💳 Cara pembayaran grup internal</h3>
-      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Kirim <strong style="color:var(--text)">1 SOL</strong> ke alamat wallet resmi di bawah ini, lalu konfirmasi ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">Telegram @Makamada</a> untuk mendapatkan akses grup internal.</p>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px"><strong style="color:var(--text)">Paket 1 tahun:</strong> kirim <strong style="color:var(--text)">1 SOL</strong> ke alamat wallet resmi di bawah ini, lalu konfirmasi ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">Telegram @Makamada</a> untuk mendapatkan akses grup internal.</p>
       <div class="wallet-addr">
         <span id="wallet-text">CtHVKmAkrTYYcAxrnpvJQuf2MD7yY7eQA4bTp6DR<span class="hl-mada">MAda</span></span>
         <button class="copy-btn" onclick="copyWallet(this)">Salin</button>
@@ -636,6 +661,19 @@
       <div class="wallet-warn">
         <span class="ic">⚠️</span>
         <span><strong style="color:var(--text)">Penting:</strong> hanya kirim ke alamat di atas. Ciri alamat resmi: berakhiran <span class="mono" style="color:var(--accent)">MAda</span> (nama Mada). Selalu cek ulang seluruh alamat sebelum mengirim — transaksi di blockchain tidak bisa dibatalkan. Jika ragu, konfirmasi dulu ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">@Makamada</a>.</span>
+      </div>
+
+      <div class="pay-divider">ATAU BAYAR VIA SAWERIA</div>
+
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px"><strong style="color:var(--text)">Paket bulanan (Rp 350.000/bulan)</strong> tersedia eksklusif lewat <strong style="color:var(--text)">Saweria</strong> — mendukung <strong style="color:var(--text)">QRIS, GoPay, OVO, dan DANA</strong>. Cocok buat yang mau coba dulu sebelum ambil setahun. Setelah bayar, konfirmasi bukti pembayaran ke <a href="https://t.me/Makamada" target="_blank" rel="noopener" style="color:var(--accent)">Telegram @Makamada</a>.</p>
+      <div class="saweria-row">
+        <div class="pay-logos">
+          <img src="images/pay-qris.jpg" alt="QRIS" loading="lazy">
+          <img src="images/pay-gopay.jpg" alt="GoPay" loading="lazy">
+          <img src="images/pay-ovo.jpg" alt="OVO" loading="lazy">
+          <img src="images/pay-dana.jpg" alt="DANA" loading="lazy">
+        </div>
+        <a href="https://saweria.co/Makamada" target="_blank" rel="noopener" class="saweria-btn">Bayar via Saweria →</a>
       </div>
     </div>
   </div>
@@ -679,7 +717,7 @@
     </details>
     <details class="reveal">
       <summary>Gimana cara bayar dan dapat akses grup internal?</summary>
-      <div class="ans">Kirim 1 SOL ke wallet resmi yang tertera di bagian Join (berakhiran "MAda"), lalu konfirmasi bukti transfer ke <a href="https://t.me/Makamada" target="_blank" rel="noopener">@Makamada</a> di Telegram. Setelah terverifikasi, lu langsung dimasukkan ke grup internal dengan akses selama 1 tahun.</div>
+      <div class="ans">Ada dua paket: (1) <strong>1 tahun = 1 SOL</strong>, dibayar ke wallet resmi yang tertera di bagian Join (berakhiran "MAda"), atau (2) <strong>bulanan = Rp 350.000</strong>, dibayar eksklusif via <a href="https://saweria.co/Makamada" target="_blank" rel="noopener">Saweria</a> (QRIS, GoPay, OVO, DANA). Setelah bayar, konfirmasi bukti ke <a href="https://t.me/Makamada" target="_blank" rel="noopener">@Makamada</a> di Telegram, dan lu langsung dimasukkan ke grup internal sesuai paket yang dipilih.</div>
     </details>
     <details class="reveal">
       <summary>Apakah call-nya bisa diverifikasi?</summary>
